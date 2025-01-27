@@ -10,7 +10,7 @@ No KernelSU, as seguintes situações podem causar bloqueio de inicialização a
 2. Seu dispositivo precisa desativar a verificação AVB para inicializar corretamente, o que geralmente exige a limpeza de todos os dados do dispositivo.
 3. Seu kernel tem alguns bugs ou não é adequado para o flash do seu dispositivo.
 
-Não importa qual seja a situação, você pode recuperar **flashando a imagem de boot padrão**. Portanto, no início do guia de instalação, recomendamos fortemente que você faça backup de seu boot padrão antes de realizar o flash. Se você não fez backup, pode obter o boot original de fábrica de outros usuários com o mesmo dispositivo ou do firmware oficial.
+Não importa qual seja a situação, você pode recuperar **flashando a imagem de boot padrão**. Portanto, no início do guia de instalação, recomendamos fortemente que você faça backup de seu boot padrão antes de realizar o flash. Se você não fez backup, poderá obter o boot original de fábrica de outros usuários com o mesmo dispositivo ou do firmware oficial.
 
 ## Bloqueio por módulos
 
@@ -35,7 +35,7 @@ Se a Atualização AB ainda não resolveu o problema, você pode tentar usar o *
 
 Existem duas maneiras de entrar no Modo de Segurança:
 
-1. O Modo de Segurança integrado de alguns sistemas: Alguns sistemas possuem um Modo de Segurança integrado que pode ser acessado pressionando longamente o botão de diminuir volume. Em outros sistemas (como o HyperOS), o Modo de Segurança pode ser ativado a partir do Recovery. Ao entrar no Modo de Segurança do sistema, o KernelSU também entra nesse modo e desativará automaticamente os módulos.
+1. O Modo de Segurança integrado de alguns sistemas: Alguns sistemas possuem um Modo de Segurança integrado que pode ser acessado pressionando longamente o botão de diminuir volume. Em outros sistemas (como o HyperOS), o Modo de Segurança pode ser ativado a partir do Recovery. Ao entrar no Modo de Segurança do sistema, o KernelSU também entrará nesse modo e desativará automaticamente os módulos.
 2. O Modo de Segurança integrado do KernelSU: Nesse caso, o método é **pressionar a tecla de diminuir volume continuamente por mais de três vezes** após a primeira tela de inicialização.
 
 Após entrar no Modo de Segurança, todos os módulos na página Módulos do gerenciador do KernelSU serão desativados. Porém, você ainda pode realizar a operação de "desinstalação" para desinstalar quaisquer módulos que possam estar causando problemas.
