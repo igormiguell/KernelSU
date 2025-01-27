@@ -11,7 +11,7 @@ export default defineConfig({
   themeConfig: {
     nav: nav(),
 
-    lastUpdatedText: 'last Updated',
+    lastUpdatedText: 'Last update',
 
     sidebar: {
       '/guide/': sidebarGuide()
@@ -23,7 +23,7 @@ export default defineConfig({
 
     footer: {
         message: 'Released under the GPL3 License.',
-        copyright: 'Copyright © 2022-present KernelSU Developers'
+        copyright: 'Copyright © 2022-2025 KernelSU developers. All rights reserved.'
     },
 
     editLink: {
