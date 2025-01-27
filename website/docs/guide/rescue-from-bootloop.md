@@ -25,9 +25,9 @@ If you've flashed a module that has been proven to be safe but causes your devic
 
 #### AB update
 
-KernelSU's module updates are based on the Android system's AB update mechanism used in OTA updates. When you install a new module or update an existing one, it doesn't directly modify the currently used module file. Instead, all modules are integrated into a new update image. After the system is restarted, it'll attempt to boot using this new update image. If the Android system boots successfully, the modules will be effectively updated.
+KernelSU's module updates are based on the Android system's AB update mechanism used in OTA updates. When you install a new module or update an existing one, it won't directly modify the currently used module file. Instead, all modules are integrated into a new update image. After the system is restarted, it will attempt to boot using this new update image. If the Android system boots successfully, the modules will be effectively updated.
 
-Therefore, the simplest and most commonly used method to recover your device is to **force a reboot**. If you're unable to boot the system after installing a module, you can press and hold the power button for more than 10 seconds, and the system will automatically reboot. After the reboot, it'll return to the state before the module update, and any previously updated modules will be automatically disabled.
+Therefore, the simplest and most commonly used method to recover your device is to **force a reboot**. If you're unable to start your system after flashing a module, you can press and hold the power button for more than 10 seconds, and the system will automatically reboot. After rebooting, it will return to the state before the module update, and any previously updated modules will be automatically disabled.
 
 #### Rescue by pressing Volume down button
 
@@ -35,8 +35,8 @@ If AB update hasn't yet resolved the issue, you can try using **Safe Mode**. In 
 
 There are two ways to enter Safe Mode:
 
-1. The built-in Safe Mode of some systems: Some systems have a built-in Safe Mode that can be accessed by holding down the Volume down button. In other systems (such as HyperOS), Safe Mode can be activated from the Recovery. When entering the system's Safe Mode, KernelSU will also enter this mode and automatically disable the modules.
-2. The built-in Safe Mode of KernelSU: In this case, the method is to **press the Volume down key continuously more than three times** after the first startup screen.
+1. The built-in Safe Mode of some systems: Some systems have a built-in Safe Mode that can be accessed by long-pressing the Volume down button. In other systems (such as HyperOS), Safe Mode can be activated from the Recovery. When entering the system's Safe Mode, KernelSU will also enter this mode and automatically disable the modules.
+2. The built-in Safe Mode of KernelSU: In this case, the method is to **press the Volume down key continuously more than three times** after the first boot screen.
 
 After entering Safe Mode, all the modules on the Module page in the KernelSU manager will be disabled. However, you can still perform the "uninstall" operation to remove any modules that may be causing issues.
 
@@ -44,7 +44,7 @@ The built-in Safe Mode is implemented in the kernel, so there is no possibility 
 
 ### Malicious modules
 
-If the methods above don't manage to recover your device, it's highly likely that the module you installed has malicious operations or has damaged your device in some other way. In this case, there are only two suggestions:
+If the above methods cannot rescue your device, it's highly likely that the module you installed has malicious operations or has damaged your device in some other way. In this case, there are only two suggestions:
 
 1. Wipe the data and flash the official system.
 2. Consult the after-sales service.
