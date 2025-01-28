@@ -4,13 +4,13 @@ Embora os módulos do KernelSU e do Magisk tenham muitas semelhanças, existem i
 
 ## Semelhanças
 
-- Formato de arquivo do módulo: Ambos usam o formato ZIP para organizar os módulos, e o formato dos módulos é praticamente idêntico.
+- Formato de arquivo do módulo: Ambos usam o formato ZIP para organizar os módulos, e o formato dos módulos é praticamente o mesmo.
 - Diretório de instalação do módulo: Ambos estão localizados em `/data/adb/modules`.
 - Sem sistema: Ambos suportam a modificação de `/system` de forma sem sistema por meio de módulos.
 - post-fs-data.sh: O tempo de execução e a semântica são exatamente os mesmos.
 - service.sh: O tempo de execução e a semântica são exatamente os mesmos.
-- system.prop: Totalmente idêntico.
-- sepolicy.rule: Totalmente idêntico.
+- system.prop: Completamente o mesmo.
+- sepolicy.rule: Completamente o mesmo.
 - BusyBox: Os scripts são executados no BusyBox com o "Modo Autônomo" ativado em ambos os casos.
 
 ## Diferenças
