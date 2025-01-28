@@ -4,13 +4,13 @@ Although KernelSU and Magisk modules have many similarities, there are inevitabl
 
 ## Similarities
 
-- Module file format: Both use the ZIP format to organize modules, and the module format is practically identical.
+- Module file format: Both use the ZIP format to organize modules, and the module format is practically the same.
 - Module installation directory: Both are located in `/data/adb/modules`.
 - Systemless: Both support modifying `/system` in a systemless way through modules.
 - post-fs-data.sh: Execution time and semantics are exactly the same.
 - service.sh: Execution time and semantics are exactly the same.
-- system.prop: Completely identical.
-- sepolicy.rule: Completely identical.
+- system.prop: Completely the same.
+- sepolicy.rule: Completely the same.
 - BusyBox: Scripts are executed in BusyBox with "Standalone Mode" enabled in both cases.
 
 ## Differences
@@ -21,7 +21,7 @@ Here are some differences:
 
 - KernelSU modules cannot be installed in Recovery mode.
 - KernelSU modules don't have built-in support for Zygisk, but you can use Zygisk modules through [ZygiskNext](https://github.com/Dr-TSNG/ZygiskNext)).
-- The method for replacing or deleting files in KernelSU modules is completely different from Magisk. KernelSU doesn't support the `.replace` method. Instead, you must create a file with the command `mknod filename c 0 0` to delete the corresponding file.
+- The method for replacing or deleting files in KernelSU modules is completely different from Magisk. KernelSU doesn't support the `.replace` method. Instead, you need to create a file with the command `mknod filename c 0 0` to delete the corresponding file.
 - The directories for BusyBox are different. The built-in BusyBox in KernelSU is located at `/data/adb/ksu/bin/busybox`, while in Magisk it is at `/data/adb/magisk/busybox`. **Note that this is an internal behavior of KernelSU and may change in the future!**
 - KernelSU doesn't support `.replace` files, but it supports the `REMOVE` and `REPLACE` variables to remove or replace files and folders.
 - KernelSU adds the `boot-completed` stage to run scripts after the boot process is finished.
