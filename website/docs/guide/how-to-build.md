@@ -20,7 +20,7 @@ repo init -m manifest.xml
 repo sync
 ```
 
-The `<kernel_manifest.xml>` file is a manifest that can uniquely define a build, allowing you to make it reproducible. To do this, you should download the manifest file from [GKI release builds](https://source.android.com/docs/core/architecture/kernel/gki-release-builds).
+The `<kernel_manifest.xml>` file is a manifest that uniquely identifies a build, allowing you to make it reproducible. To do this, you should download the manifest file from [GKI release builds](https://source.android.com/docs/core/architecture/kernel/gki-release-builds).
 
 ### Build
 
@@ -50,7 +50,7 @@ rm common/android/abi_gki_protected_exports_*
 
 ## Build kernel with KernelSU
 
-If you can successfully build the kernel, adding support for KernelSU will be relatively straightforward. At the root of the kernel source directory, run one of the options listed below:
+If you can successfully build the kernel, adding support for KernelSU will be relatively easy. At the root of the kernel source directory, run one of the options listed below:
 
 ::: code-group
 
