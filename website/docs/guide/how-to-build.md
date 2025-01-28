@@ -1,4 +1,4 @@
-# How to build KernelSU?
+# How to build
 
 First, you should read the official Android documentation for kernel build:
 
