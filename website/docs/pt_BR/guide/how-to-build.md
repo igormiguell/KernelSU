@@ -1,4 +1,4 @@
-# Como compilar o KernelSU?
+# Como compilar
 
 Primeiro, você deve ler a documentação oficial do Android para compilação do kernel:
 
