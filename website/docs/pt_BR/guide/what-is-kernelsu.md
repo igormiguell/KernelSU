@@ -14,7 +14,7 @@ Por favor, consulte: [Instalação](installation)
 
 ## Como compilar o KernelSU?
 
-Por favor, consulte: [Como compilar?](how-to-build)
+Por favor, consulte: [Como compilar](how-to-build)
 
 ## Discussão
 
