@@ -38,7 +38,7 @@ const { errno, stdout } = exec("getprop ro.product.model");
 
 For another example, you can make the web page display full screen, or display a toast.
 
-[API documentation](https://www.npmjs.com/package/kernelsu).
+[API documentation](https://www.npmjs.com/package/kernelsu)
 
 If you find that the existing API doesn't meet your needs or is inconvenient to use, you are welcome to give us suggestions [here](https://github.com/tiann/KernelSU/issues)!
 
