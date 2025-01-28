@@ -14,7 +14,7 @@ Please refer: [Installation](installation)
 
 ## How to build?
 
-Please refer: [How to build?](how-to-build)
+Please refer: [How to build](how-to-build)
 
 ## Discussion
 
