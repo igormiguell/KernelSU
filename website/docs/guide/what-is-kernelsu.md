@@ -8,11 +8,11 @@ The main feature of KernelSU is that it's **kernel-based**. KernelSU works in ke
 
 Additionally, KernelSU provides a module system via OverlayFS, allowing you to load your custom plugin into system. It also provides a mechanism to modify files in `/system` partition.
 
-## How to use?
+## How to use KernelSU?
 
 Please refer: [Installation](installation)
 
-## How to build?
+## How to build KernelSU?
 
 Please refer: [How to build](how-to-build)
 
