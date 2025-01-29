@@ -2,7 +2,7 @@
 
 ## Does KernelSU support my device?
 
-First, your devices should be able to unlock the bootloader. If not, then there is no support.
+First, your devices should be able to unlock the bootloader. If not, then there is unsupported.
 
 Next, install the KernelSU manager on your device and open it. If it shows `Unsupported`, then your device cannot be supported immediately. However, you can build kernel source and integrate KernelSU to make it work, or use [Unofficially supported devices](unofficially-support-devices).
 
