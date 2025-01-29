@@ -48,7 +48,7 @@ function sidebarGuide() {
           { text: 'Diferenças com Magisk', link: '/pt_BR/guide/difference-with-magisk' },
           { text: 'Instalação', link: '/pt_BR/guide/installation' },
           { text: 'Como compilar', link: '/pt_BR/guide/how-to-build' },
-          { text: 'Integração para dispositivos não GKI', link: '/pt_BR/guide/how-to-integrate-for-non-gki'},
+          { text: 'Integração para dispositivos não-GKI', link: '/pt_BR/guide/how-to-integrate-for-non-gki'},
           { text: 'Dispositivos com suporte não oficial', link: '/pt_BR/guide/unofficially-support-devices.md' },
           { text: 'Guias de módulo', link: '/pt_BR/guide/module.md' },
           { text: 'Módulo WebUI', link: '/pt_BR/guide/module-webui.md' },
