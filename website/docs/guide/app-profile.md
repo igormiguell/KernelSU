@@ -74,7 +74,7 @@ Explaining the full concept of SELinux is complex and beyond the scope of this d
 2. [Red Hat: What Is SELinux?](https://www.redhat.com/en/topics/linux/what-is-selinux)
 3. [ArchLinux: SELinux](https://wiki.archlinux.org/title/SELinux)
 
-KernelSU's Root Profile allows customization of the SELinux context of the root process after executing `su`. Specific access control rules can be set for this context, enabling fine-grained control over root privileges.
+KernelSU's Root Profile allows customization of the SELinux context of the root process after executing `su`. Specific access control rules can be set for this context, enabling fine-grained control over root permissions.
 
 In typical scenarios, when an app executes `su`, it switches the process to a SELinux domain with **unrestricted access**, such as `u:r:su:s0`. Through the Root Profile, this domain can be switched to a custom domain, such as `u:r:app1:s0`, and a series of rules can be defined for this domain:
 
