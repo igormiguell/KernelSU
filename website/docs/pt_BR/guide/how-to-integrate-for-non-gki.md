@@ -44,7 +44,7 @@ Comente `ksu_enable_sucompat()` e `ksu_enable_ksud()` em `KernelSU/kernel/ksu.c`
 :::
 
 :::info COMO FAZER COM QUE O RECURSO DE DESMONTAR MÓDULOS FUNCIONE NO PRÉ-GKI?
-Se o seu kernel for inferior a 5.9, você deve portar `path_umount` para `fs/namespace.c`. Isso é necessário para que o recurso de quantidade do módulo funcione corretamente. Caso você não porte `path_umount`, o recurso "Desmontar módulos" não funcionará. Você pode obter mais informações sobre como conseguir isso no final desta página.
+Se o seu kernel for inferior a 5.9, você deve portar `path_umount` para `fs/namespace.c`. Isso é necessário para que o recurso "Desmontar módulos" funcione corretamente. Caso você não porte `path_umount`, o recurso "Desmontar módulos" não funcionará. Você pode obter mais informações sobre como conseguir isso no final desta página.
 :::
 
 ## Modifique manualmente a fonte do kernel
