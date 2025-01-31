@@ -12,12 +12,12 @@ For ordinary apps without root permissions, the App Profile can control the beha
 
 Linux systems have two concepts: users and groups. Each user has a user ID (UID), and a user can belong to multiple groups, each with its own group ID (GID). These IDs are used to identify users in the system and determine which system resources they can access.
 
-Users with a UID 0 are known as root users, and groups with a GID 0 are known as root groups. The root user group generally has the highest system privileges.
+Users with a UID of 0 are known as root users, and groups with a GID of 0 are known as root groups. The root user group generally has the highest system privileges.
 
-In Android, each app functions as a separate user (except in cases of shared UIDs) with a unique UID. For example, `0` represents the root user, `1000` represents `system`, `2000` corresponds to the ADB shell, and UIDs ranging from `10000` to `19999` represent ordinary apps.
+In the case of the Android system, each app functions as a separate user (except in cases of shared UIDs) with a unique UID. For example, `0` represents the root user, `1000` represents `system`, `2000` represents the ADB shell, and UIDs ranging from `10000` to `19999` represent ordinary apps.
 
 :::info
-Here, the mentioned UID isn't the same as the concept of multiple users or work profiles in the Android system. Work profiles are actually implemented by partitioning the UID range. For example, 10000-19999 represents the main user, while 110000-119999 represents a work profile. Each ordinary app among them has its own unique UID.
+Here, the UID mentioned isn't the same as the concept of multiple users or work profiles in the Android system. Work profiles are actually implemented by partitioning the UID range. For example, 10000-19999 represents the main user, while 110000-119999 represents a work profile. Each ordinary app among them has its own unique UID.
 :::
 
 Each app can have several groups, with the GID representing the primary group, which usually matches the UID. Other groups are known as supplementary groups. Certain permissions are controlled through groups, such as network access permissions or Bluetooth access.
@@ -34,22 +34,22 @@ Here, the UID is `2000`, and the GID (primary group ID) is also `2000`. Addition
 KernelSU's Root Profile allows customization of the UID, GID, and groups for the root process after executing `su`. For example, the Root Profile of a root app can set its UID to `2000`, which means that when using `su`, the app's actual permissions are at the ADB shell level. Additionally, the `inet` group can be removed, preventing the `su` command from accessing the network.
 
 :::tip NOTE
-The App Profile only controls the permissions of the root process after using `su` and doesn't affect the app's own permissions. If an app has requested network access permission, it can still access the network even without using `su`. Removing the `inet` group from `su` only prevents `su` from accessing the network.
+The App Profile only controls the permissions of the root process after using `su` and doesn't control the app's own permissions. If an app has requested network access permission, it can still access the network even without using `su`. Removing the `inet` group from `su` only prevents `su` from accessing the network.
 :::
 
-Root Profile is enforced in the kernel and doesn't depend on the voluntary behavior of root apps, unlike switching users or groups through `su`. Granting `su` permissions is entirely controlled by the user, not the developer.
+Root Profile is enforced in the kernel and doesn't rely on the voluntary behavior of root apps, unlike switching users or groups through `su`. Granting `su` permissions is entirely controlled by the user, not the developer.
 
 ### Capabilities
 
 Capabilities are a mechanism for privilege separation in Linux.
 
-For the purpose of performing permission checks, traditional `UNIX` implementations distinguish two categories of processes: privileged processes (whose effective user ID is `0`, referred to as superuser or root) and unprivileged processes (whose effective UID is nonzero).  Privileged processes bypass all kernel permission checks, while unprivileged processes are subject to full permission checking based on the process's credentials (usually: effective UID, effective GID, and supplementary group list).
+For the purpose of performing permission checks, traditional `UNIX` implementations distinguish two categories of processes: privileged processes (whose effective user ID is `0`, referred to as superuser or root) and unprivileged processes (whose effective UID is nonzero). Privileged processes bypass all kernel permission checks, while unprivileged processes are subject to full permission checking based on the process's credentials (usually: effective UID, effective GID, and supplementary group list).
 
 Starting with Linux 2.2, Linux divides the privileges traditionally associated with superuser into distinct units, known as capabilities, which can be independently enabled and disabled.
 
 Each capability represents one or more privileges. For example, `CAP_DAC_READ_SEARCH` represents the ability to bypass permission checks for file reading, as well as directory read and execute permissions. If a user with an effective UID of `0` (root user) doesn't have the `CAP_DAC_READ_SEARCH` capability or higher, this means that even as root, they cannot freely read files.
 
-KernelSU's Root Profile allows customization of the root process's capabilities after executing `su`, thus granting partial "root privileges". Unlike the UID and GID mentioned above, certain root apps require a UID of `0` after using `su`. In such cases, limiting the capabilities of this root user with UID `0` can restrict the operations they're allowed to perform.
+KernelSU's Root Profile allows customization of the capabilities of the root process after executing `su`, thus granting partial "root privileges". Unlike the UID and GID mentioned above, certain root apps require a UID of `0` after using `su`. In such cases, limiting the capabilities of this root user with UID `0` can restrict the operations they're allowed to perform.
 
 :::tip STRONG RECOMMENDATION
 Linux's capability [official documentation](https://man7.org/linux/man-pages/man7/capabilities.7.html) provides detailed explanations of the abilities represented by each capability. If you intend to customize capabilities, it's strongly recommended that you read this document first.
@@ -65,7 +65,7 @@ SELinux can run in two global modes:
 2. Enforcing mode: Denial events are logged and enforced.
 
 :::warning WARNING
-Modern Android systems heavily rely on SELinux to ensure overall system security. It's highly recommended not to use any custom systems running in "Permissive mode", as it doesn't offer significant advantages over a completely open system.
+Modern Android systems heavily rely on SELinux to ensure overall system security. It's highly recommended not to use any custom systems running in "Permissive mode" since it provides no significant advantages over a completely open system.
 :::
 
 Explaining the full concept of SELinux is complex and beyond the scope of this document. It's recommended to first understand how it works through the following resources:
@@ -89,7 +89,7 @@ Note that the rule `allow app1 * * *` is used for demonstration purposes only. I
 
 ### Escalation
 
-If the configuration of the Root Profile isn't set properly, an escalation scenario may occur. The restrictions imposed by the Root Profile may fail unintentionally.
+If the configuration of the Root Profile isn't set properly, an escalation scenario may occur. The restrictions imposed by the Root Profile can unintentionally fail.
 
 For example, if you grant root permission to an ADB shell user (which is a common case) and then grant root permission to a regular app, but configure its Root Profile with UID 2000 (which is the UID of the ADB shell user), the app can obtain full root access by executing the `su` command twice:
 
@@ -110,9 +110,9 @@ KernelSU provides a systemless mechanism to modify system partitions, achieved t
 
 Additionally, the KernelSU manager's settings interface provides the "Umount modules by default". By default, this option is **enabled**, which means that KernelSU or some modules will unload modules for this app unless additional settings are applied. If you don't prefer this setting or if it affects certain apps, you have the following options:
 
-1. Keep the "Unmount modules by default" option enabled and individually disable the "Umount modules" option in the App Profile for apps requiring module loading (acting as a "whitelist").
-2. Disable the "Unmount modules by default" option and individually enable the "Umount modules" option in the App Profile for apps that require module unloading (acting as a "blacklist").
+1. Keep the "Umount modules by default" option enabled and individually disable the "Umount modules" option in the App Profile for apps requiring module loading (acting as a "whitelist").
+2. Disable the "Umount modules by default" option and individually enable the "Umount modules" option in the App Profile for apps requiring module loading (acting as a "blacklist").
 
 :::info
-In devices running kernel version 5.10 and above, the kernel performs without any further action the unloading of modules. However, for devices running kernel versions below 5.10, this option is merely a configuration setting, and KernelSU itself doesn't perform any action. If you want to use the "Unmount modules" option in kernel versions before 5.10 you will need to backport the `path_umount` function in `fs/namespace.c`. You can get more information at the end of the [Intergrate for non-GKI devices](https://kernelsu.org/guide/how-to-integrate-for-non-gki.html#how-to-backport-path_umount) page. Some modules, such as Zygisksu, may also use this option to determine if module unloading is necessary.
+In devices running kernel version 5.10 and above, the kernel performs without any further action the unloading of modules. However, for devices running kernel versions below 5.10, this option is merely a configuration setting, and KernelSU itself doesn't take any action. If you want to use the "Umount modules" option in kernel versions before 5.10 you need to backport the `path_umount` function in `fs/namespace.c`. You can get more information at the end of the [Intergrate for non-GKI devices](https://kernelsu.org/guide/how-to-integrate-for-non-gki.html#how-to-backport-path_umount) page. Some modules, such as Zygisksu, may also use this option to determine if module unloading is necessary.
 :::
