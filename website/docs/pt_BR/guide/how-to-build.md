@@ -50,7 +50,7 @@ rm common/android/abi_gki_protected_exports_*
 
 ## Compilar o kernel com KernelSU
 
-Se você conseguir compilar o kernel com sucesso, adicionar suporte ao KernelSU será relativamente simples. Na raiz do diretório de origem do kernel, execute uma das opções listadas abaixo:
+Se você conseguir compilar o kernel com sucesso, adicionar suporte ao KernelSU será relativamente simples. Na raiz do diretório de origem do kernel, execute qualquer uma das opções listadas abaixo:
 
 ::: code-group
 
