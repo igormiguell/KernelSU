@@ -30,11 +30,11 @@ However, if you only use the `su` of KernelSU, it will work well with Magisk. Ke
 
 ## Will KernelSU substitute Magisk?
 
-We believe that it isn't, and that isn't our goal. Magisk is good enough as a root solution for user space and will have a long life. KernelSU's goal is to provide a kernel interface to users, not substituting Magisk.
+We believe that it isn't, and that isn't our goal. Magisk is good enough for userspace root solution and will have a long life. KernelSU's goal is to provide a kernel interface to users, not substituting Magisk.
 
 ## Can KernelSU support non-GKI devices?
 
-It's possible. But you should download the kernel source code, integrate KernelSU into the source tree, and compile the kernel yourself.
+It's possible. But you should download the kernel source and intergrate KernelSU into the source tree, and compile the kernel yourself.
 
 ## Can KernelSU support devices below Android 12?
 
@@ -71,8 +71,8 @@ Of course. But KernelSU doesn't have built-in hosts support, you can install [sy
 
 The 1 TB `modules.img` file is a disk image file. **Don't worry about its size**; it's a special type of file known as a [sparse file](https://en.wikipedia.org/wiki/Sparse_file). Its actual size is only the size of the module you use, and it will decrease dynamically after you delete the module. In fact, it doesn't occupy 1 TB of disk space (your device might not even have that much space).
 
-If you really mind the size of this file, you can use the `resize2fs -M` command to make it the actual size. However, the module may not work correctly in this case, and we won't provide any support for this.
+If you really care about the size of this file, you can use the `resize2fs -M` command to make it the actual size. However, the module may not work correctly in this case, and we won't provide any support for this.
 
 ## Why does my device show wrong storage size?
 
-Certain devices use non-standard methods to calculate the device's storage size, which may lead to inaccurate storage calculations in apps and system menus, especially when dealing with 1 TB sparse files. Although this issue seems to be specific to Samsung devices, affecting only Samsung apps and services, it's important to note that the discrepancy mainly concerns the total storage size, while the calculation of free space remains accurate.
+Certain devices use non-standard methods to calculate the device's storage size, which may lead to inaccurate storage calculations in system apps and menus, especially when dealing with 1 TB sparse files. Although this problem seems to be specific to Samsung devices, affecting only Samsung apps and services, it's important to note that the discrepancy mainly concerns the total storage size, and the free space calculation remains accurate.
