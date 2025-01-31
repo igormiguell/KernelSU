@@ -37,14 +37,14 @@ Now, when you re-build your kernel, KernelSU should work correctly.
 
 If you find that KPROBES is still not enabled, you can try enabling `CONFIG_MODULES`. If that doesn't solve the issue, use `make menuconfig` to search for other KPROBES dependencies.
 
-However, if you encounter a bootloop after integrating KernelSU, this may indicate that the *kprobe is broken in your kernel*, meaning you will need to fix the kprobe bug or use another way.
+However, if you encounter a bootloop after integrating KernelSU, this may indicate that the **kprobe is broken in your kernel**, which means that you should fix the kprobe bug or use another way.
 
 :::tip HOW TO CHECK IF KPROBE IS BROKEN？
 Comment out `ksu_enable_sucompat()` and `ksu_enable_ksud()` in `KernelSU/kernel/ksu.c`, if the device boots normally, then kprobe may be broken.
 :::
 
 :::info HOW TO GET MODULE UNMOUNT FEATURE WORKING ON PRE-GKI?
-If your kernel is older than 5.9, you should backport `path_umount` to `fs/namespace.c`. This is required to get module umount feature work correctly. If you don't backport `path_umount`, module umount feature won't work. You can get more info on how to achieve this at the end of this page.
+If your kernel is older than 5.9, you should backport `path_umount` to `fs/namespace.c`. This is required to get "Umount module" feature work correctly. If you don't backport `path_umount`, "Umount module" feature won't work. You can get more info on how to achieve this at the end of this page.
 :::
 
 ## Manually modify the kernel source
