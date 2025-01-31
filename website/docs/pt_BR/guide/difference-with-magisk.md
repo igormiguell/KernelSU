@@ -15,7 +15,7 @@ Embora os módulos do KernelSU e do Magisk tenham muitas semelhanças, existem i
 
 ## Diferenças
 
-Antes de entender as diferenças, é importante saber como identificar se o seu módulo está sendo executado no KernelSU ou no Magisk. Você pode usar a variável de ambiente `KSU` para fazer essa diferenciação em qualquer lugar onde os scripts do módulo possam ser executados (`customize.sh`, `post-fs-data.sh`, `service.sh`). No KernelSU, essa variável de ambiente será definida como `true`.
+Antes de entender as diferenças, é importante saber como identificar se o seu módulo está sendo executado no KernelSU ou no Magisk. Você pode usar a variável de ambiente `KSU` para diferenciá-lo em todos os locais onde você pode executar os scripts do módulo (`customize.sh`, `post-fs-data.sh`, `service.sh`). No KernelSU, essa variável de ambiente será definida como `true`.
 
 Aqui estão algumas diferenças:
 
