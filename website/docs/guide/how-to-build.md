@@ -50,7 +50,7 @@ rm common/android/abi_gki_protected_exports_*
 
 ## Build kernel with KernelSU
 
-If you can successfully build the kernel, adding support for KernelSU will be relatively easy. At the root of the kernel source directory, run one of the options listed below:
+If you can successfully build the kernel, adding support for KernelSU will be relatively easy. In the root of the kernel source directory, run any of the options listed below:
 
 ::: code-group
 
