@@ -6,7 +6,7 @@ const pkg = require('vitepress/package.json')
 
 export default defineConfig({
   lang: 'pt-BR',
-  description: 'Uma solução root baseada em kernel para dispositivos Android GKI.',
+  description: 'Uma solução root baseado em kernel para dispositivos Android GKI.',
 
   themeConfig: {
     nav: nav(),
