@@ -49,7 +49,7 @@ Acreditamos que não, e esse não é o nosso objetivo. O Magisk é bom o suficie
 
 ## Como integrar o KernelSU para um kernel antigo?
 
-Por favor, consulte a guia [Integração para dispositivos não-GKI](how-to-integrate-for-non-gki).
+Por favor, verifique o guia [Integração para dispositivos não-GKI](how-to-integrate-for-non-gki).
 
 ## Por que a minha versão do Android é 13 e o kernel mostra "android12-5.10"?
 
