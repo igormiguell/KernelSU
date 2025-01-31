@@ -14,7 +14,7 @@ Os sistemas Linux possuem dois conceitos: usuários e grupos. Cada usuário poss
 
 Os usuários com UID 0 são conhecidos como usuários root, e grupos com GID 0 são chamados de grupos root. O grupo de usuários root geralmente tem os privilégios mais altos no sistema.
 
-No Android, cada app funciona como um usuário separado (exceto em casos de UID compartilhado) e recebe um UID exclusivo. Por exemplo, `0` representa o usuário root, `1000` representa `system`, `2000` ao ADB shell e os UIDs de `10000` a `19999` são atribuídos a apps comuns.
+No caso do sistema Android, cada app funciona como um usuário separado (exceto em casos de UID compartilhado) e recebe um UID exclusivo. Por exemplo, `0` representa o usuário root, `1000` representa `system`, `2000` ao ADB shell e os UIDs de `10000` a `19999` são atribuídos a apps comuns.
 
 :::info INFORMAÇÕES
 Aqui, o UID mencionado não é o mesmo que o conceito de múltiplos usuários ou perfis de trabalho no sistema Android. Os perfis de trabalho são, na verdade, implementados particionando o intervalo UID. Por exemplo, 10000-19999 representa o usuário principal, enquanto 110000-119999 representa um perfil de trabalho. Cada app comum entre eles possui seu próprio UID exclusivo.
