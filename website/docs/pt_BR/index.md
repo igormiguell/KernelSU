@@ -4,7 +4,7 @@ title: Início
 
 hero:
   name: KernelSU
-  text: Uma solução root baseada em kernel para Android
+  text: Uma solução root baseado em kernel para Android
   tagline: ""
   image:
     src: /logo.png
