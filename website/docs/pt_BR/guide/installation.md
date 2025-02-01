@@ -94,19 +94,19 @@ Se o seu aparelho for um celular, recomendamos que você priorize o modo LKM. Se
 
 Para usar o modo LKM, você precisa obter o firmware oficial e corrigi-lo com base no firmware oficial. Se você usar um kernel de terceiros, poderá usar o `boot.img` do kernel de terceiros como firmware oficial.
 
-Existem muitas maneiras de obter o firmware oficial. Se o seu dispositivo suportar `fastboot boot`, então recomendamos **o método mais recomendado e o mais simples** que é usar `fastboot boot` para inicializar temporariamente o kernel GKI fornecido pelo KernelSU, depois instalar o gerenciador e, finalmente, instalá-lo diretamente no gerenciador. Este método não exige que você baixe manualmente o firmware oficial, nem extraia manualmente o boot.
+Existem muitas maneiras de obter o firmware oficial. Se o seu dispositivo suportar `fastboot boot`, então recomendamos **o método mais simples e indicado**, que consiste em usar `fastboot boot` para inicializar temporariamente o kernel GKI fornecido pelo KernelSU, depois instalar o gerenciador e, finalmente, instalá-lo diretamente pelo gerenciador. Este método não exige o download manual do firmware oficial nem a extração manual do boot.
 
 Se o seu dispositivo não suportar `fastboot boot`, pode ser necessário baixar manualmente o pacote de firmware oficial e extrair o boot dele.
 
-Ao contrário do modo GKI, o modo LKM modificará o `ramdisk`, portanto, em dispositivos com Android 13, ele precisa corrigir a partição `init_boot` em vez da partição `boot`, enquanto isso, o modo GKI sempre opera a partição `boot`.
+Ao contrário do modo GKI, o modo LKM modifica o `ramdisk`. Portanto, em dispositivos com Android 13, ele precisa corrigir a partição `init_boot` em vez da partição `boot`, enquanto o modo GKI sempre opera sobre a partição `boot`.
 
 ### Use o gerenciador
 
 Abra o gerenciador, clique no ícone de instalação no canto superior direito e diversas opções aparecerão:
 
-1. Selecione e corrija um arquivo. Se o seu dispositivo não tiver privilégios root, você pode escolher esta opção e, em seguida, selecionar seu firmware oficial, o gerenciador irá corrigi-lo automaticamente. Você só precisa flashar este arquivo corrigido para obter privilégios root permanentemente.
-2. Instale diretamente. Se o seu dispositivo já estiver rooteado, você pode escolher esta opção, o gerenciador obterá automaticamente as informações do seu dispositivo e, em seguida, corrigirá o firmware oficial e irá fazer o flash automaticamente. Você pode considerar usar `fastboot boot` e o kernel GKI do KernelSU para obter root temporário e instalar o gerenciador, e então usar esta opção. Esta também é a principal forma de atualizar o KernelSU.
-3. Instale em outra partição. Se o seu dispositivo suportar partição A/B, você pode escolher esta opção, o gerenciador irá corrigir automaticamente o firmware oficial e, em seguida, instalá-lo em outra partição. Este método é adequado para dispositivos após o OTA, você pode instalá-lo diretamente em outra partição após o OTA e, em seguida, reiniciar o dispositivo.
+1. Selecione um arquivo. Se o seu dispositivo não tiver privilégios root, você pode escolher esta opção e, em seguida, selecionar o seu firmware oficial. O gerenciador corrigirá automaticamente o firmware. Após isso, basta fazer o flash deste arquivo corrigido para obter privilégios root permanentemente.
+2. Instalação direta. Se o seu dispositivo já estiver rooteado, você pode escolher esta opção. O gerenciador obterá automaticamente as informações do seu dispositivo, corrigirá o firmware oficial e realizará o flash automaticamente. Você também pode usar o comando `fastboot boot` junto com o kernel GKI do KernelSU para obter root temporário e instalar o gerenciador, e então usar esta opção. Esta também é a principal forma de atualizar o KernelSU.
+3. Instalar no slot inativo. Se o seu dispositivo suportar partição A/B, você pode escolher esta opção. O gerenciador corrigirá automaticamente o firmware oficial e o instalará em outra partição. Esse método é adequado para dispositivos após o OTA, você pode instalá-lo diretamente em outra partição após o OTA e, em seguida, reiniciar o dispositivo.
 
 ### Use a linha de comando
 
@@ -123,15 +123,15 @@ Patch boot ou imagens init_boot para aplicar o KernelSU
 Uso: ksud boot-patch [OPTIONS]
 
 Opções:
-  -b, --boot <BOOT>              Caminho da imagem boot, se não for especificado, tentará encontrar a imagem boot automaticamente
-  -k, --kernel <KERNEL>          Caminho da imagem do kernel para substituir
-  -m, --module <MODULE>          O caminho do módulo LKM a ser substituído, se não for especificado, usará o integrado
+  -b, --boot <BOOT>              Caminho da imagem boot. Se não especificado, tentará encontrar a imagem boot automaticamente
+  -k, --kernel <KERNEL>          Caminho da imagem do kernel a ser substituída
+  -m, --module <MODULE>          Caminho do módulo LKM a ser substituído. Se não especificado, usará o módulo integrado
   -i, --init <INIT>              init a ser substituído
-  -u, --ota                      Usará outro slot quando a imagem boot não for especificada
+  -u, --ota                      Usará outro slot se a imagem boot não for especificada
   -f, --flash                    Flash para a partição boot após o patch
-  -o, --out <OUT>                Caminho de saída, se não for especificado, usará o diretório atual
-      --magiskboot <MAGISKBOOT>  Caminho do magiskboot, se não for especificado, usará um integrado
-      --kmi <KMI>                A versão do KMI, se especificada, usará o KMI especificado
+  -o, --out <OUT>                Caminho de saída. Se não especificado, usará o diretório atual
+      --magiskboot <MAGISKBOOT>  Caminho do magiskboot. Se não especificado, usará a versão integrada
+      --kmi <KMI>                Versão do KMI. Se especificada, usará o KMI indicado
   -h, --help                     Imprimir ajuda
 ```
 
