@@ -2,21 +2,21 @@
 
 ## Verifique se o seu dispositivo é compatível
 
-Baixe o gerenciador do KernelSU em [GitHub Releases](https://github.com/tiann/KernelSU/releases), e instale-o no seu dispositivo:
+Baixe o gerenciador do KernelSU em [GitHub Releases](https://github.com/tiann/KernelSU/releases) e instale-o no seu dispositivo:
 
-- Se o app mostrar `Sem suporte`, significa que **você deve compilar o kernel sozinho**. O KernelSU não fornecerá e nunca fornecerá um boot.img para você instalar.
+- Se o app mostrar `Sem suporte`, significa que **você precisará compilar o kernel por conta própria**. O KernelSU não fornecerá e nunca fornecerá um arquivo boot.img para você instalar.
 - Se o app mostrar `Não instalado`, então seu dispositivo é oficialmente suportado pelo KernelSU.
 
 ::: info INFORMAÇÕES
-Para dispositivos mostrando `Sem suporte`, aqui está os [Dispositivos com suporte não oficial](unofficially-support-devices.md). Você mesmo pode compilar o kernel.
+Para dispositivos que mostram `Sem suporte`, você pode conferir a lista de [Dispositivos com suporte não oficial](unofficially-support-devices.md). Você mesmo pode compilar o kernel.
 :::
 
 ## Backup padrão do boot.img
 
-Antes de fazer o flash, você deve primeiro fazer backup de seu boot.img padrão. Se você encontrar algum bootloop, você sempre pode restaurar o sistema voltando para o boot padrão de fábrica usando o fastboot.
+Antes de fazer o flash, é essencial que você faça o backup do seu boot.img padrão. Se encontrar algum bootloop, você sempre pode restaurar o sistema voltando ao boot padrão de fábrica usando o fastboot.
 
 ::: warning AVISO
-Flashar pode causar perda de dados, certifique-se de executar esta etapa bem antes de prosseguir para a próxima! Você também pode fazer backup de todos os dados do seu dispositivo, se necessário.
+O flash pode causar perda de dados. Certifique-se de executar esta etapa bem antes de prosseguir para a próxima! Se necessário, também é recomendável fazer backup de todos os dados do seu dispositivo.
 :::
 
 ## Conhecimento necessário
@@ -45,9 +45,9 @@ Observe que o SubLevel na versão do kernel não faz parte do KMI! Isso signific
 
 ### Nível do patch de segurança {#security-patch-level}
 
-Dispositivos Android mais recentes podem ter mecanismos anti-rollback que não permitem flashar um boot.img com um nível do patch de segurança antigo. Por exemplo, se o kernel do seu dispositivo for `5.10.101-android12-9-g30979850fc20`, o patch de segurança será `2023-11`, mesmo se você atualizar o kernel correspondente ao KMI do kernel, se o nível do patch de segurança for anterior a `2023-11` (como `2023-06`), então isso pode causar bootloop.
+Dispositivos Android mais recentes podem ter mecanismos anti-rollback que impedem o flash de um boot.img com um nível de patch de segurança antigo. Por exemplo, se o kernel do seu dispositivo for `5.10.101-android12-9-g30979850fc20`, o patch de segurança será `2023-11`, mesmo se você atualizar o kernel correspondente ao KMI do kernel, se o nível do patch de segurança for anterior a `2023-11` (como `2023-06`), isso pode causar um bootloop.
 
-Portanto, os kernels com os níveis do patch de segurança mais recentes são preferidos para manter a correspondência com o KMI.
+Portanto, kernels com os níveis de patch de segurança mais recentes são preferidos para manter a compatibilidade com o KMI.
 
 ### Versão do kernel vs Versão do Android
 
@@ -57,19 +57,19 @@ Se você descobrir que a versão do seu kernel é `android12-5.10.101`, mas a ve
 
 ## Introdução
 
-Desde a versão [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), KernelSU suporta dois modos de execução em dispositivos GKI:
+Desde a versão [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), o KernelSU suporta dois modos de execução em dispositivos GKI:
 
-1. `GKI`: Substitua o kernel original do dispositivo pelo **Generic Kernel Image** (GKI) fornecido pelo KernelSU.
+1. `GKI`: Substitue o kernel original do dispositivo pelo **Generic Kernel Image** (GKI) fornecido pelo KernelSU.
 2. `LKM`: Carregue o **Loadable Kernel Module** (LKM) no kernel do dispositivo sem substituir o kernel original.
 
-Esses dois modos são adequados para diferentes cenários e você pode escolher de acordo com suas necessidades.
+Esses dois modos são adequados para diferentes cenários, e você pode escolher o mais adequado conforme suas necessidades.
 
 ### Modo GKI {#gki-mode}
 
 No modo GKI, o kernel original do dispositivo será substituído pela imagem genérica do kernel fornecida pelo KernelSU. As vantagens do modo GKI são:
 
-1. Forte universalidade, adequada para a maioria dos dispositivos. Por exemplo, a Samsung ativou dispositivos KNOX e o modo LKM não pode funcionar. Existem também alguns dispositivos modificados de nicho que só podem usar o modo GKI.
-2. Pode ser usado sem depender de firmware oficial e não há necessidade de esperar por atualizações oficiais de firmware, desde que o KMI seja consistente, ele pode ser usado.
+1. Forte universalidade, adequada para a maioria dos dispositivos. Por exemplo, a Samsung ativou dispositivos KNOX, e o modo LKM não pode funcionar. Existem também alguns dispositivos modificados de nicho que só podem usar o modo GKI.
+2. Pode ser usado sem depender de firmware oficial, e não há necessidade de esperar por atualizações oficiais de firmware, desde que o KMI seja consistente, ele pode ser usado.
 
 ### Modo LKM {#lkm-mode}
 
@@ -77,8 +77,8 @@ No modo LKM, o kernel original do dispositivo não será substituído, mas o mó
 
 1. Não substituirá o kernel original do dispositivo. Se você tiver os requisitos especiais para o kernel original do dispositivo ou quiser usar o KernelSU enquanto usa um kernel de terceiros, poderá usar o modo LKM.
 2. É mais conveniente atualizar o OTA. Ao atualizar o KernelSU, você pode instalá-lo diretamente no gerenciador sem flashar manualmente. Após o sistema OTA, você pode instalá-lo diretamente no segundo slot sem flashar manualmente.
-3. Adequado para alguns cenários especiais, por exemplo, o LKM também pode ser carregado com privilégios root temporários. Como não é necessário substituir a partição boot, ele não acionará o AVB e não causará o bloqueio do dispositivo.
-4. O LKM pode ser desinstalado temporariamente. Se você deseja desativar temporariamente o acesso root, você pode desinstalar o LKM, este processo não requer o flash de partições, nem mesmo a reinicialização do dispositivo. Se quiser ativar o root novamente, basta reiniciar o dispositivo.
+3. Adequado para alguns cenários especiais. Por exemplo, o LKM também pode ser carregado com privilégios root temporários. Como não é necessário substituir a partição boot, ele não acionará o AVB e não causará o bloqueio do dispositivo.
+4. O LKM pode ser desinstalado temporariamente. Se você deseja desativar temporariamente o acesso root, você pode desinstalar o LKM. Este processo não requer o flash de partições, nem mesmo a reinicialização do dispositivo. Se quiser ativar o root novamente, basta reiniciar o dispositivo.
 
 :::tip COEXISTÊNCIA DE DOIS MODOS
 Após abrir o gerenciador, você pode ver o modo atual do dispositivo na página inicial. Observe que a prioridade do modo GKI é maior que a do LKM. Por exemplo, se você usar o kernel GKI para substituir o kernel original e usar LKM para corrigir o kernel GKI, o LKM será ignorado e o dispositivo sempre será executado no modo GKI.
