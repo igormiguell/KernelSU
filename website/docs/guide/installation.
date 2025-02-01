@@ -2,21 +2,21 @@
 
 ## Check if your device is supported
 
-Download KernelSU manager APP from [GitHub Releases](https://github.com/tiann/KernelSU/releases) and install it to your device:
+Download KernelSU manager from [GitHub Releases](https://github.com/tiann/KernelSU/releases) and install it on your device:
 
-- If the app shows `Unsupported`, it means **you should compile the kernel yourself**, KernelSU will not and never provide a boot image for you to flash.
-- If the app shows `Not installed`, then your devices is officially supported by KernelSU.
+- If the app shows `Unsupported`, it means that **you should compile the kernel yourself**, KernelSU won't and never provide a boot.img file for you to flash.
+- If the app shows `Not installed`, then your device is officially supported by KernelSU.
 
-:::info
-For devices showing `Unsupported`, here is an [Unofficially supported devices](unofficially-support-devices.md). You can compile the kernel yourself.
+::: info
+For devices showing `Unsupported`, you can check the list of [Unofficially supported devices](unofficially-support-devices.md). You can compile the kernel yourself.
 :::
 
 ## Backup stock boot.img
 
-Before flashing, you must first backup your stock boot.img. If you encounter any bootloop, you can always restore the system by flashing back to the stock factory boot using fastboot.
+Before flashing, it's essential that you back up your stock boot.img. If you encounter any bootloop, you can always restore the system by flashing back to the stock factory boot using fastboot.
 
 ::: warning
-Flashing may cause data loss, be sure to do this step well before proceeding to the next step! You can also back up all the data on your device if necessary.
+Flashing may cause data loss. Make sure to do this step well before proceeding to the next step! You can also back up all the data on your device if necessary.
 :::
 
 ## Necessary knowledge
@@ -40,20 +40,20 @@ w      .x         .y       -zzz           -k            -something
 `w.x-zzz-k` is the KMI version. For example, if a device kernel version is `5.10.101-android12-9-g30979850fc20`, then its KMI is `5.10-android12-9`; theoretically, it can boot up normally with other KMI kernels.
 
 ::: tip
-Note that the SubLevel in the kernel version is not part of the KMI! That means that `5.10.101-android12-9-g30979850fc20` has the same KMI as `5.10.137-android12-9-g30979850fc20`!
+Note that the SubLevel in the kernel version isn't part of the KMI! This means that `5.10.101-android12-9-g30979850fc20` has the same KMI as `5.10.137-android12-9-g30979850fc20`!
 :::
 
 ### Security patch level {#security-patch-level}
 
-Newer Android devices may have anti-rollback mechanisms in place that do not allow flashing a boot image with an old security patch level. For example, if your device kernel is `5.10.101-android12-9-g30979850fc20`, it's security patch level is `2023-11`; even if you flash the kernel corresponding to the KMI, if the security patch level is older than `2023- 11` (such as `2023-06`), then it may cause bootloop.
+Newer Android devices may have anti-rollback mechanisms that prevent flashing a boot image with an old security patch level. For example, if your device kernel is `5.10.101-android12-9-g30979850fc20`, the security patch is `2023-11`; even if you flash the kernel corresponding to the KMI, if the security patch level is older than `2023- 11` (such as `2023-06`), it may cause a bootloop.
 
-Therefore, kernels with latest security patch levels are preferred for maintaining the correspondence with KMI.
+Therefore, kernels with the latest security patch levels are preferred to maintain compatibility with the KMI.
 
 ### Kernel version vs Android version
 
 Please note: **Kernel version and Android version are not necessarily the same!**
 
-If you find that your kernel version is `android12-5.10.101`, but your Android system version is Android 13 or other, please don't be surprised, because the version number of the Android system is not necessarily the same as the version number of the Linux kernel. The version number of the Linux kernel is generally correspondent to the version of the Android system that comes with the **device when it is shipped**. If the Android system is upgraded later, the kernel version will generally not change. So, before flashing anything, **always refer to the kernel version!**
+If you find that your kernel version is `android12-5.10.101`, but your Android system version is Android 13 or other, don’t be surprised, because the version number of the Android system isn't necessarily the same as the version number of the Linux kernel. The version number of the Linux kernel is generally correspondent to the version of the Android system that comes with the **device when it is shipped**. If the Android system is upgraded later, the kernel version will generally not change. So, before flashing anything, **always refer to the kernel version!**
 
 ## Introduction
 
@@ -62,26 +62,26 @@ Since version [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), Ke
 1. `GKI`: Replace the original kernel of the device with the **Generic Kernel Image** (GKI) provided by KernelSU.
 2. `LKM`: Load the **Loadable Kernel Module** (LKM) into the device kernel without replacing the original kernel.
 
-These two modes are suitable for different scenarios, and you can choose the one according to your needs.
+These two modes are suitable for different scenarios, and you can choose the one that best suits your needs.
 
 ### GKI mode {#gki-mode}
 
 In GKI mode, the original kernel of the device will be replaced with the generic kernel image provided by KernelSU. The advantages of GKI mode are:
 
-1. Strong universality, suitable for most devices; for example, Samsung has enabled KNOX devices, and LKM mode cannot operate. There are also some niche modified devices that can only use GKI mode.
-2. Can be used without relying on official firmware; no need to wait for official firmware updates, as long as the KMI is consistent, it can be used.
+1. Strong universality, suitable for most devices. For example, Samsung has enabled KNOX devices, and LKM mode won't work. There are also some niche modified devices that can only use GKI mode.
+2. Can be used without relying on official firmware, and there is no need to wait for official firmware updates, as long as the KMI is consistent, it can be used.
 
 ### LKM mode {#lkm-mode}
 
-In LKM mode, the original kernel of the device will not be replaced, but the loadable kernel module will be loaded into the device kernel. The advantages of LKM mode are:
+In LKM mode, the original kernel of the device won't be replaced, but the loadable kernel module will be loaded into the device kernel. The advantages of LKM mode are:
 
-1. Will not replace the original kernel of the device; if you have special requirements for the original kernel of the device, or you want to use KernelSU while using a third-party kernel, you can use LKM mode.
-2. It is more convenient to upgrade and OTA; when upgrading KernelSU, you can directly install it in the manager without flashing manually; after the system OTA, you can directly install it to the second slot without manual flashing.
-3. Suitable for some special scenarios; for example, LKM can also be loaded with temporary ROOT permissions. Since it does not need to replace the boot partition, it will not trigger AVB and will not cause the device to be bricked.
-4. LKM can be temporarily uninstalled; if you want to temporarily disable root access, you can uninstall LKM, this process does not require flashing partitions, or even rebooting the device; if you want to enable root again, just reboot the device.
+1. Won't replace the original kernel of the device. If you have special requirements for the original kernel of the device, or you want to use KernelSU while using a third-party kernel, you can use LKM mode.
+2. It's more convenient to upgrade and OTA. When upgrading KernelSU, you can directly install it in the manager without flashing manually. After the system OTA, you can directly install it to the second slot without manual flashing.
+3. Suitable for some special scenarios. For example, the LKM can also be loaded with temporary root permissions. Since it doesn't need to replace the boot partition, it won't trigger AVB and won't cause the device to be bricked.
+4. LKM can be temporarily uninstalled. If you want to temporarily disable root access, you can uninstall the LKM. This process doesn't require flashing partitions, or even rebooting the device. If you want to enable root again, just reboot the device.
 
-:::tip Coexistence of two modes
-After opening the manager, you can see the current mode of the device on the homepage; note that the priority of GKI mode is higher than that of LKM. For example, if you use GKI kernel to replace the original kernel, and use LKM to patch the GKI kernel, then LKM will be ignored, and the device will always run in GKI mode.
+:::tip COEXISTENCE OF TWO MODES
+After opening the manager, you can see the current mode of the device on the homepage. Note that the priority of GKI mode is higher than that of LKM. For example, if you use GKI kernel to replace the original kernel, and use LKM to patch the GKI kernel, the LKM will be ignored, and the device will always run in GKI mode.
 :::
 
 ### Which one to choose? {#which-one}
