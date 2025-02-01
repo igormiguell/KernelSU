@@ -45,15 +45,15 @@ Note that the SubLevel in the kernel version isn't part of the KMI! This means t
 
 ### Security patch level {#security-patch-level}
 
-Newer Android devices may have anti-rollback mechanisms that prevent flashing a boot image with an old security patch level. For example, if your device kernel is `5.10.101-android12-9-g30979850fc20`, the security patch is `2023-11`; even if you flash the kernel corresponding to the KMI, if the security patch level is older than `2023- 11` (such as `2023-06`), it may cause a bootloop.
+Newer Android devices may have anti-rollback mechanisms that prevent flashing a boot image with an old security patch level. For example, if your device kernel is `5.10.101-android12-9-g30979850fc20`, the security patch level is `2023-11`; even if you flash the kernel corresponding to the KMI, if the security patch level is older than `2023- 11` (such as `2023-06`), it may cause a bootloop.
 
-Therefore, kernels with the latest security patch levels are preferred to maintain compatibility with the KMI.
+Therefore, kernels with latest security patch levels are preferred to maintain compatibility with the KMI.
 
 ### Kernel version vs Android version
 
 Please note: **Kernel version and Android version are not necessarily the same!**
 
-If you find that your kernel version is `android12-5.10.101`, but your Android system version is Android 13 or other, don’t be surprised, because the version number of the Android system isn't necessarily the same as the version number of the Linux kernel. The version number of the Linux kernel is generally correspondent to the version of the Android system that comes with the **device when it is shipped**. If the Android system is upgraded later, the kernel version will generally not change. So, before flashing anything, **always refer to the kernel version!**
+If you find that your kernel version is `android12-5.10.101`, but your Android system version is Android 13 or other, don't be surprised, because the version number of the Android system isn't necessarily the same as the version number of the Linux kernel. The version number of the Linux kernel is generally correspondent to the version of the Android system that comes with the **device when it is shipped**. If the Android system is upgraded later, the kernel version will generally not change. So, before flashing anything, **always refer to the kernel version!**
 
 ## Introduction
 
@@ -62,7 +62,7 @@ Since version [0.9.0](https://github.com/tiann/KernelSU/releases/tag/v0.9.0), Ke
 1. `GKI`: Replace the original kernel of the device with the **Generic Kernel Image** (GKI) provided by KernelSU.
 2. `LKM`: Load the **Loadable Kernel Module** (LKM) into the device kernel without replacing the original kernel.
 
-These two modes are suitable for different scenarios, and you can choose the one that best suits your needs.
+These two modes are suitable for different scenarios, and you can choose the one according to your needs.
 
 ### GKI mode {#gki-mode}
 
