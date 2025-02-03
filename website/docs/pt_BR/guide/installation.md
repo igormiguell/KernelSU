@@ -137,7 +137,7 @@ Opções:
 
 Algumas opções que precisam ser explicadas:
 
-1. A opção `--magiskboot` pode especificar o caminho do magiskboot. Se não for especificado, o ksud irá procurá-lo nas variáveis ​​de ambiente. Se você não sabe como obter o magiskboot, você pode verificar [aqui](#patch-boot-image).
+1. A opção `--magiskboot` pode especificar o caminho do magiskboot. Se não for especificado, o ksud irá procurá-lo nas variáveis ​​de ambiente. Se você não souber como obter o magiskboot, você pode verificar [aqui](#patch-boot-image).
 2. A opção `--kmi` pode especificar a versão do `KMI`. Se o nome do kernel do seu dispositivo não seguir a especificação KMI, você poderá especificá-lo através desta opção.
 
 O uso mais comum é:
@@ -150,10 +150,10 @@ ksud boot-patch -b <boot.img> --kmi android13-5.10
 
 Existem vários métodos de instalação para o modo GKI, cada um adequado para um cenário diferente, portanto escolha conforme necessário.
 
-1. Instalar com fastboot usando o boot.img fornecido pelo KernelSU
-2. Instalar com um app kernel flash, como o Kernel Flasher
-3. Corrigir boot.img manualmente e instala-lo
-4. Instalar com Recovery personalizado (por exemplo, TWRP)
+1. Instalar com fastboot usando o boot.img fornecido pelo KernelSU.
+2. Instalar com um app kernel flash, como o [Kernel Flasher](https://github.com/capntrips/KernelFlasher/releases)..
+3. Corrigir manualmente o boot.img e instalá-lo.
+4. Instalar com Recovery personalizado (por exemplo, TWRP).
 
 ## Instalar com o boot.img fornecido pelo KernelSU
 
@@ -161,15 +161,15 @@ Se o `boot.img` do seu dispositivo usa um formato de compactação comumente usa
 
 ### Encontre o boot.img adequado
 
-O KernelSU fornece um boot.img genérico para dispositivos GKI e você deve flashar o boot.img para a partição boot do dispositivo.
+O KernelSU fornece um boot.img genérico para dispositivos GKI, e você deve fazer o flash do boot.img na partição boot do dispositivo.
 
-Você pode baixar o boot.img em [GitHub Release](https://github.com/tiann/KernelSU/releases), por favor, observe que você deve usar a versão correta do boot.img. Se você não sabe qual arquivo baixar, leia atentamente a descrição do [KMI](#kmi) e [Nível do patch de segurança](#security-patch-level) neste documento.
+Você pode baixar o boot.img em [GitHub Release](https://github.com/tiann/KernelSU/releases). Por favor, observe que você deve usar a versão correta do boot.img. Se você não sabe qual arquivo baixar, leia atentamente a descrição do [KMI](#kmi) e [Nível do patch de segurança](#security-patch-level) neste documento.
 
-Normalmente, existem três arquivos de inicialização em formatos diferentes no mesmo KMI e nível do patch de segurança. Eles são todos iguais, exceto pelo formato de compactação do kernel. Por favor, verifique o formato de compactação do kernel de seu boot.img original. Você deve usar o formato correto, como `lz4` ou `gz`. Se você usar um formato de compactação incorreto, poderá encontrar bootloop após flashar o boot.img.
+Normalmente, existem três arquivos de inicialização em formatos diferentes para o mesmo KMI e nível de patch de segurança. Eles são idênticos, exceto pelo formato de compactação do kernel. Por favor, verifique o formato de compactação do kernel de seu boot.img original. Você deve usar o formato correto, como `lz4` ou `gz`. Se você usar um formato de compactação incorreto, poderá encontrar bootloop após o flash do boot.img.
 
 ::: info FORMATO DE COMPACTAÇÃO DO BOOT.IMG
-1. Você pode usar o magiskboot para obter o formato de compactação de seu boot original; alternativamente, você também pode solicitá-lo a membros/desenvolvedores da comunidade com o mesmo modelo do seu dispositivo. Além disso, o formato de compactação do kernel geralmente não muda, portanto, se você inicializar com êxito com um determinado formato de compactação, poderá tentar esse formato mais tarde.
-2. Os dispositivos Xiaomi geralmente usam `gz` ou `uncompressed`.
+1. Você pode usar o magiskboot para obter o formato de compactação do seu boot.img original. Alternativamente, você também pode perguntar a membros ou desenvolvedores da comunidade que possuam o mesmo modelo de dispositivo. Além disso, o formato de compactação do kernel geralmente não muda, portanto, se você inicializar com êxito com um determinado formato de compactação, poderá tentar esse formato mais tarde.
+2. Dispositivos Xiaomi geralmente usam `gz` ou `uncompressed`.
 3. Para dispositivos Pixel, siga as instruções abaixo:
 :::
 
