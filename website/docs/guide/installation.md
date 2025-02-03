@@ -123,22 +123,22 @@ Patch boot or init_boot images to apply KernelSU
 Usage: ksud boot-patch [OPTIONS]
 
 Options:
-  -b, --boot <BOOT>              Boot image path, if not specified, will try to find the boot image automatically
-  -k, --kernel <KERNEL>          Kernel image path to replace
-  -m, --module <MODULE>          LKM module path to replace, if not specified, will use the builtin one
+  -b, --boot <BOOT>              Boot image path. If not specified, it will try to find the boot image automatically
+  -k, --kernel <KERNEL>          Kernel image path to be replaced
+  -m, --module <MODULE>          LKM module path to be replaced. If not specified, the built-in module will be used
   -i, --init <INIT>              init to be replaced
-  -u, --ota                      Will use another slot when boot image is not specified
+  -u, --ota                      Will use another slot if the boot image is not specified
   -f, --flash                    Flash it to boot partition after patch
-  -o, --out <OUT>                Output path, if not specified, will use current directory
-      --magiskboot <MAGISKBOOT>  magiskboot path, if not specified, will use builtin one
-      --kmi <KMI>                KMI version, if specified, will use the specified KMI
+  -o, --out <OUT>                Output path. If not specified, the current directory will be used
+      --magiskboot <MAGISKBOOT>  magiskboot path. If not specified, the built-in version will be used
+      --kmi <KMI>                KMI version. If specified, the indicated KMI will be used
   -h, --help                     Print help
 ```
 
 A few options that need to be explained:
 
-1. The `--magiskboot` option can specify the path of magiskboot. If it is not specified, ksud will look for it in the environment variables. If you do not know how to get magiskboot, you can refer to [this](#patch-boot-image).
-2. The `--kmi` option can specify the `KMI` version. If the kernel name of your device does not follow the KMI specification, you can specify it through this option.
+1. The `--magiskboot` option can specify the path of magiskboot. If not specified, ksud will look for it in the environment variables. If you don’t know how to get magiskboot, you can check [here](#patch-boot-image).
+2. The `--kmi` option can specify the `KMI` version. If the kernel name of your device doesn't follow the KMI specification, you can specify it using this option.
 
 The most common usage is:
 
@@ -151,24 +151,24 @@ ksud boot-patch -b <boot.img> --kmi android13-5.10
 There are several installation methods for GKI mode, each suitable for a different scenario, so please choose accordingly:
 
 1. Install with fastboot using the boot.img provided by KernelSU.
-2. Install with a kernel flash app, such as KernelFlasher.
+2. Install with a kernel flash app, such as [Kernel Flasher](https://github.com/capntrips/KernelFlasher/releases).
 3. Repair the boot.img manually and install it.
 4. Install with custom Recovery (e.g., TWRP).
 
 ## Install with boot.img provided by KernelSU
 
-If your device's `boot.img` uses a commonly used compression format, you can use the GKI images provided by KernelSU to flash it directly. It does not require TWRP or self-patching the image.
+If your device's `boot.img` uses a commonly used compression format, you can use the GKI images provided by KernelSU to flash it directly. This doesn't require TWRP or self-patching the image.
 
 ### Find proper boot.img
 
-KernelSU provides a generic boot.img for GKI devices, and you should flash the boot.img to the boot partition of the device.
+KernelSU provides a generic boot.img for GKI devices, and you should flash the boot.img to the device's boot partition.
 
-You can download boot.img from [GitHub Release](https://github.com/tiann/KernelSU/releases), please note that you should use the correct version of boot.img. If you do not know which file to download, please carefully read the description of [KMI](#kmi) and [Security patch level](#security-patch-level) in this document.
+You can download boot.img from [GitHub Release](https://github.com/tiann/KernelSU/releases). Please note that you should use the correct version of boot.img. If you don't know which file to download, carefully read the description of [KMI](#kmi) and [Security patch level](#security-patch-level) in this document.
 
-Normally, there are three boot files in different formats under the same KMI and security patch level. They are all the same except for the kernel compression format. Please check the kernel compression format of your original boot.img. You should use the correct format, such as `lz4`, `gz`. If you use an incorrect compression format, you may encounter bootloop after flashing boot.
+Normally, there are three boot files in different formats for the same KMI and security patch level. They're identical except for the kernel compression format. Please check the kernel compression format of your original boot.img. You should use the correct format, such as `lz4`, `gz`. If you use an incorrect compression format, you may encounter bootloop after flashing boot.img.
 
-:::info Compression format of boot.img
-1. You can use magiskboot to get the compression format of your original boot; alternatively, you can also ask for it from community members/developers with the same model as your device. Also, the compression format of the kernel usually does not change, so if you boot successfully with a certain compression format, you can try that format later as well.
+:::info COMPRESSION FORMAT OF BOOT.IMG
+1. You can use magiskboot to get the compression format of your original boot.img. Alternatively, you can also ask members or developers in the community who have the same device model. Also, the compression format of the kernel usually doesn't change, so if you boot successfully with a certain compression format, you can try that format later as well.
 2. Xiaomi devices usually use `gz` or `uncompressed`.
 3. For Pixel devices, follow the instructions below:
 :::
